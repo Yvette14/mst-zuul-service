@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: api-gateway
+server:
+  port: 8082
+
+zuul:
+  sensitive-headers: Cookie, Set-Cookie
+  host:
+    connect-timeout-millis: 60000
+    socket-timeout-millis: 60000
+  routes:
+    api:
+      path: /api/**
+      serviceId: mst-user-service
+      stripPrefix: false
+  ratelimit:
+    enabled: true
+    repository: IN_MEMORY
+    policies:
+      api:
+        limit: 3
+        refresh-interval: 60
+        type: URL
+
+feign:
+  httpclient:
+    enabled: true
+  hystrix:
+    enabled: true

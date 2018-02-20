@@ -1,0 +1,20 @@
+spring:
+  cloud:
+    consul:
+      enabled: true
+      host: 127.0.0.1
+      port: 8500
+      config:
+        enabled: true
+      ribbon:
+        enabled: true
+      discovery:
+        enabled: true
+        register: true
+        heartbeat:
+          enabled: true
+          ttlValue: 10
+        preferIpAddress: true
+        tags: localtag
+        default-query-tag: localtag
+        query-passing: true
